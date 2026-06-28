@@ -218,6 +218,35 @@
       gap: 0; margin-bottom: 36px; line-height: 1;
     }
 
+    /* ── ORNAMENTO: linha · losango · linha ── */
+    .hero-orn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 14px 0;
+      pointer-events: none;
+    }
+    .hero-orn::before,
+    .hero-orn::after {
+      content: '';
+      display: block;
+      width: 72px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(197,165,90,.45));
+    }
+    .hero-orn::after {
+      background: linear-gradient(to left, transparent, rgba(197,165,90,.45));
+    }
+    .hero-orn-gem {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      opacity: .7;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
     /* 1 — FUNERÁRIA: Cinzel maiúsculo médio */
     .h1-funeraria {
       font-family: 'Cinzel', serif;
@@ -227,7 +256,6 @@
       letter-spacing: .42em;
       color: var(--gold);
       display: block;
-      margin-bottom: 14px;
     }
 
     /* 2 — CENTRAL: Cinzel 900, dominante */
@@ -251,7 +279,6 @@
       letter-spacing: .38em;
       color: rgba(197,165,90,.75);
       display: block;
-      margin-top: 18px;
     }
 
     /* 4 — Cidades: Cinzel maiúsculo pequeno, muted */
@@ -261,9 +288,9 @@
       font-size: clamp(0.5rem, 1vw, 0.68rem);
       text-transform: uppercase;
       letter-spacing: .3em;
-      color: rgba(255,255,255,.32);
+      color: rgba(255,255,255,.28);
       display: block;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     /* 5 — Descritivo: Cormorant Garamond itálico, muito pequeno */
@@ -711,7 +738,9 @@
     <div class="hero-content">
       <h1 class="hero-h1">
         <span class="h1-funeraria">Funerária</span>
+        <div class="hero-orn" aria-hidden="true"><span class="hero-orn-gem"></span></div>
         <span class="h1-central">Central</span>
+        <div class="hero-orn" aria-hidden="true"><span class="hero-orn-gem"></span></div>
         <span class="h1-assit">Assistência Funeral</span>
         <span class="h1-sub2">Porto Alegre · Grande Porto Alegre · Rio Grande do Sul</span>
       </h1>
