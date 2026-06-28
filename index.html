@@ -204,57 +204,78 @@
 
     .hero-content {
       position: relative; z-index: 2;
-      text-align: center; padding: 130px 24px 96px; max-width: 860px;
+      text-align: center; padding: 130px 40px 96px; max-width: 900px;
     }
-    .hero-eyebrow {
-      display: block;
-      font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: .95rem; color: var(--gold); letter-spacing: .22em; margin-bottom: 28px;
-    }
+    /* ── HIERARQUIA TIPOGRÁFICA DO HERO ─────────────────────
+       1. FUNERÁRIA    — Cinzel maiúsculo, médio, gold
+       2. CENTRAL      — Cinzel 900, muito grande, gold
+       3. ASSISTÊNCIA  — Cinzel maiúsculo, médio, gold/60%
+       4. Cidades      — Cinzel maiúsculo, pequeno, branco/35%
+       5. Descritivo   — Cormorant Garamond itálico, branco/55%
+    ──────────────────────────────────────────────────────── */
     .hero-h1 {
-      font-family: 'Cinzel', serif;
       display: flex; flex-direction: column; align-items: center;
-      gap: 0; margin-bottom: 28px;
-      text-transform: uppercase; line-height: 1;
+      gap: 0; margin-bottom: 36px; line-height: 1;
     }
-    /* CENTRAL — maior, destaque dourado */
-    .h1-central {
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: .18em;
-      line-height: 1;
-      display: block;
-    }
-    /* Assistência Funeral — mesma fonte/estilo do eyebrow */
-    .h1-assit {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(.95rem, 1.8vw, 1.3rem);
-      color: var(--gold);
-      letter-spacing: .22em;
-      text-transform: none;
-      display: block;
-      margin-top: 10px;
-    }
-    /* Porto Alegre · RS · 24h — menor, muted */
-    .h1-sub2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(.82rem, 1.4vw, 1rem);
-      color: rgba(255,255,255,.45);
-      letter-spacing: .2em;
+
+    /* 1 — FUNERÁRIA: Cinzel maiúsculo médio */
+    .h1-funeraria {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: clamp(0.72rem, 1.6vw, 1rem);
       text-transform: uppercase;
+      letter-spacing: .42em;
+      color: var(--gold);
       display: block;
-      margin-top: 10px;
+      margin-bottom: 14px;
     }
+
+    /* 2 — CENTRAL: Cinzel 900, dominante */
+    .h1-central {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: clamp(4.5rem, 11vw, 8rem);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      line-height: .9;
+      color: var(--gold);
+      display: block;
+    }
+
+    /* 3 — ASSISTÊNCIA FUNERAL: Cinzel maiúsculo médio */
+    .h1-assit {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: clamp(0.62rem, 1.3vw, 0.88rem);
+      text-transform: uppercase;
+      letter-spacing: .38em;
+      color: rgba(197,165,90,.75);
+      display: block;
+      margin-top: 18px;
+    }
+
+    /* 4 — Cidades: Cinzel maiúsculo pequeno, muted */
+    .h1-sub2 {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: clamp(0.5rem, 1vw, 0.68rem);
+      text-transform: uppercase;
+      letter-spacing: .3em;
+      color: rgba(255,255,255,.32);
+      display: block;
+      margin-top: 12px;
+    }
+
+    /* 5 — Descritivo: Cormorant Garamond itálico, muito pequeno */
     .hero-sub {
-      font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-weight: 300; font-size: clamp(1rem, 2vw, 1.3rem);
-      color: rgba(255,255,255,.68); line-height: 1.78;
-      max-width: 620px; margin: 0 auto 44px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(0.88rem, 1.6vw, 1.1rem);
+      color: rgba(255,255,255,.52);
+      line-height: 1.85;
+      max-width: 560px;
+      margin: 0 auto 44px;
     }
     .hero-ctas {
       display: flex; align-items: center; justify-content: center;
@@ -688,11 +709,11 @@
     <div class="hero-corners" aria-hidden="true"><div class="c2"></div></div>
 
     <div class="hero-content">
-      <span class="hero-eyebrow">Funerária</span>
       <h1 class="hero-h1">
+        <span class="h1-funeraria">Funerária</span>
         <span class="h1-central">Central</span>
         <span class="h1-assit">Assistência Funeral</span>
-        <span class="h1-sub2">Porto Alegre · Grande Porto Alegre · RS · 24h</span>
+        <span class="h1-sub2">Porto Alegre · Grande Porto Alegre · Rio Grande do Sul</span>
       </h1>
       <p class="hero-sub">
         Funeral completo, cremação, coroa de flores e orientação documental.<br>
