@@ -213,11 +213,40 @@
     }
     .hero-h1 {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.6rem, 4.2vw, 3rem);
-      font-weight: 700; color: #fff; letter-spacing: .05em;
-      text-transform: uppercase; line-height: 1.22; margin-bottom: 28px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; margin-bottom: 28px;
+      text-transform: uppercase; line-height: 1;
     }
-    .hero-h1 em { color: var(--gold); font-style: normal; }
+    /* CENTRAL — maior, destaque dourado */
+    .h1-central {
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: .12em;
+      line-height: .95;
+      display: block;
+    }
+    /* Assistência Funeral 24h — médio, branco */
+    .h1-sub1 {
+      font-size: clamp(1rem, 2.8vw, 2rem);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .18em;
+      display: block;
+      margin-top: 12px;
+    }
+    /* Porto Alegre etc — pequeno, muted */
+    .h1-sub2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(.82rem, 1.4vw, 1rem);
+      color: rgba(255,255,255,.45);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 10px;
+    }
     .hero-sub {
       font-family: 'Cormorant Garamond', serif; font-style: italic;
       font-weight: 300; font-size: clamp(1rem, 2vw, 1.3rem);
@@ -656,11 +685,11 @@
     <div class="hero-corners" aria-hidden="true"><div class="c2"></div></div>
 
     <div class="hero-content">
-      <span class="hero-eyebrow">Funerária Central — Atendimento Funeral</span>
+      <span class="hero-eyebrow">Funerária · Assistência Funeral</span>
       <h1 class="hero-h1">
-        Assistência Funeral <em>24 horas</em><br>
-        em Porto Alegre,<br>
-        Grande Porto Alegre e todo o RS.
+        <span class="h1-central">Central</span>
+        <span class="h1-sub1">Atendimento Funeral 24h</span>
+        <span class="h1-sub2">Porto Alegre · Grande Porto Alegre · RS</span>
       </h1>
       <p class="hero-sub">
         Funeral completo, cremação, coroa de flores e orientação documental.
