@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="hero-bg.webp">
+  <link rel="preload" as="image" href="logo.png">
   <style>
     /* ─────────────────────────────────────────────
        RESET
@@ -172,8 +174,16 @@
       text-decoration: none; transition: background .3s;
     }
     .hd-cta:hover { background: var(--gold-h); }
-    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .burger span { display: block; width: 24px; height: 1.5px; background: #fff; }
+    .burger { display: none; }
+    .hd-wa-mobile {
+      display: none;
+      align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy);
+      padding: 9px 16px;
+      font-family: 'Cinzel', serif; font-size: .6rem;
+      font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      text-decoration: none;
+    }
 
     /* ─────────────────────────────────────────────
        HERO  (dark navy)
@@ -681,7 +691,8 @@
       #banners { grid-template-columns: 1fr; }
       .ft-grid { grid-template-columns: 1fr 1fr; }
       .hd-nav { display: none; }
-      .burger { display: flex; }
+      .burger { display: none; }
+      .hd-wa-mobile { display: flex; }
       .hero-corners { display: none; }
       .steps-grid::before { display: none; }
       .ban { padding: 64px 32px; }
@@ -690,7 +701,7 @@
       .hd-in { justify-content: center; position: relative; }
       .burger { position: absolute; right: 20px; }
       /* logo menor no mobile */
-      .hd-in img { height: 68px !important; }
+      .hd-in img { height: 60px !important; max-width: 160px; object-fit: contain; }
       /* hero content padding mobile */
       .hero-content { padding: 110px 20px 80px; }
       /* botões hero empilham e ficam full width */
@@ -719,7 +730,9 @@
 <meta name="twitter:title" content="Funerária Central | Atendimento Funeral Grande Porto Alegre e RS | 24h">
 <meta name="twitter:description" content="Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores — 24 horas pelo WhatsApp.">
 <meta name="twitter:image" content="https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp">
-<meta name="keywords" content="funeraria grande porto alegre, central atendimento funeral, funeraria central rs, atendimento funeral 24 horas, funeraria 24h grande poa, cremacao grande porto alegre, funeraria rs, assistencia funeral rs, funeraria central grande porto alegre"><meta name="robots" content="index, follow"><link rel="canonical" href="https://centralfunerariars.com.br/"><meta property="og:type" content="website"><meta property="og:url" content="https://centralfunerariars.com.br/"><meta property="og:title" content="Funerária Central | Atendimento Funeral Grande Porto Alegre e RS | 24h"><meta property="og:description" content="Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores — 24 horas pelo WhatsApp."><meta property="og:image" content="https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Funerária Central"><meta property="og:image:width" content="1672"><meta property="og:image:height" content="941"><script type="application/ld+json">{"@context":"https://schema.org","@type":"FuneralHome","name":"Funerária Central — Central Atendimento Funeral","description":"Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores e orientação documental 24 horas.","url":"https://centralfunerariars.com.br/","telephone":"+555120241595","openingHours":"Mo-Su 00:00-23:59","address":{"@type":"PostalAddress","addressLocality":"Porto Alegre","addressRegion":"RS","addressCountry":"BR"},"priceRange":"R$1.250 - R$5.000","image":"https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp","areaServed":["Grande Porto Alegre","Rio Grande do Sul","Porto Alegre","Grande POA","RS"]}</script>
+<meta name="keywords" content="funeraria grande porto alegre, central atendimento funeral, funeraria central rs, atendimento funeral 24 horas, funeraria 24h grande poa, cremacao grande porto alegre, funeraria rs, assistencia funeral rs, funeraria central grande porto alegre"><meta name="robots" content="index, follow"><link rel="canonical" href="https://centralfunerariars.com.br/"><link rel="sitemap" type="application/xml" href="/sitemap.xml"><meta property="og:type" content="website"><meta property="og:url" content="https://centralfunerariars.com.br/"><meta property="og:title" content="Funerária Central | Atendimento Funeral Grande Porto Alegre e RS | 24h"><meta property="og:description" content="Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores — 24 horas pelo WhatsApp."><meta property="og:image" content="https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Funerária Central"><meta property="og:image:width" content="1672"><meta property="og:image:height" content="941"><script type="application/ld+json">{"@context":"https://schema.org","@type":"FuneralHome","name":"Funerária Central — Central Atendimento Funeral","description":"Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores e orientação documental 24 horas.","url":"https://centralfunerariars.com.br/","telephone":"+555120241595","openingHours":"Mo-Su 00:00-23:59","address":{"@type":"PostalAddress","addressLocality":"Porto Alegre","addressRegion":"RS","addressCountry":"BR"},"priceRange":"R$1.250 - R$5.000","image":"https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp","areaServed":["Grande Porto Alegre","Rio Grande do Sul","Porto Alegre","Grande POA","RS"],"contactPoint":{"@type":"ContactPoint","telephone":"+55-51-2024-1595","contactType":"customer service","availableLanguage":"Portuguese"},"sameAs":["https://wa.me/5551980581755"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que fazer quando alguém falece?", "acceptedAnswer": {"@type": "Answer", "text": "O primeiro passo é entrar em contato com uma funernária. Chame a Funerária Central pelo WhatsApp (51) 98058-1755 ou telefone (51) 2024-1595. Nossa equipe orienta sobre os próximos passos, documentação e procedimentos."}}, {"@type": "Question", "name": "A Funerária Central atende de madrugada e feriados?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. A Funerária Central atende 24 horas por dia, 7 dias por semana, incluindo todos os feriados. Ligue ou chame pelo WhatsApp a qualquer momento."}}, {"@type": "Question", "name": "Como funciona a cremação na Funerária Central?", "acceptedAnswer": {"@type": "Answer", "text": "Realizamos cremação a partir de R$1.250. Nossa equipe orienta a família sobre todos os documentos necessários e conduz cada etapa do processo."}}, {"@type": "Question", "name": "A Funerária Central faz entrega de coroa de flores?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Oferecemos coroas de flores a partir de R$450, com entrega no local do velório ou cerimônia em Porto Alegre e todo o RS."}}, {"@type": "Question", "name": "A Funerária Central atende cidades do interior do RS?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Atendemos Porto Alegre, Grande Porto Alegre e todo o Rio Grande do Sul. Para translados nacionais também realizamos atendimento."}}, {"@type": "Question", "name": "Posso resolver tudo pelo WhatsApp?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. O WhatsApp é nosso canal principal. Você recebe orientação, informação sobre preços, suporte documental e encaminhamento do serviço diretamente pelo app."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Como contratar serviço funerário pela Funerária Central", "description": "Atendimento funerário em Porto Alegre e Grande Porto Alegre. Três passos simples, sem burocracia.", "step": [{"@type": "HowToStep", "position": 1, "name": "Chame pelo WhatsApp", "text": "Não precisa ter tudo resolvido antes. A primeira mensagem já abre o atendimento e a orientação começa ali."}, {"@type": "HowToStep", "position": 2, "name": "Receba orientação imediata", "text": "Nossa equipe orienta os próximos passos, a documentação necessária e o que precisa ser feito."}, {"@type": "HowToStep", "position": 3, "name": "Nós cuidamos do resto", "text": "A Central organiza tudo. Você se concentra na família e na despedida."}]}</script>
 </head>
 <body>
 
@@ -730,7 +743,7 @@
     <div class="hd-in">
 
       <a href="#hero" class="logo" aria-label="Funerária Central — página inicial">
-        <img src="logo.png" alt="Funerária Central Porto Alegre - Central Atendimento Funeral 24h" height="96" style="display:block;">
+        <img src="logo.png" alt="Funerária Central Porto Alegre - Central Atendimento Funeral 24h" height="96" style="display:block;" fetchpriority="high">
       </a>
 
       <nav class="hd-nav" aria-label="Navegação principal">
@@ -747,9 +760,11 @@
            target="_blank" rel="noopener" class="hd-cta" aria-label="Abrir WhatsApp">WhatsApp</a>
       </nav>
 
-      <div class="burger" aria-label="Menu" role="button" tabindex="0">
-        <span></span><span></span><span></span>
-      </div>
+      <a href="https://wa.me/5551980581755?text=Ol%C3%A1%2C%20preciso%20de%20orienta%C3%A7%C3%A3o%20funer%C3%A1ria%20agora.%20Podem%20me%20atender%3F"
+         target="_blank" rel="noopener" class="hd-wa-mobile" aria-label="Abrir WhatsApp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
     </div>
   </header>
 
@@ -825,7 +840,7 @@
               <line x1="7"  y1="27" x2="21" y2="27"/>
             </svg>
           </div>
-          <div class="svc-name">Funeral Completo</div>
+          <h3 class="svc-name">Funeral Completo</div>
           <p class="svc-desc">Do velório ao sepultamento, cuidamos de cada etapa com respeito e organização. A família só precisa chamar.</p>
           <span class="svc-from">a partir de</span>
           <span class="svc-price">R$ 1.450</span>
@@ -840,7 +855,7 @@
               <path d="M11 17 C11 17 9 20 10.5 22.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="svc-name">Cremação</div>
+          <h3 class="svc-name">Cremação</div>
           <p class="svc-desc">Orientamos sobre todo o processo, cuidamos da documentação e conduzimos o encaminhamento. Simples e seguro.</p>
           <span class="svc-from">a partir de</span>
           <span class="svc-price">R$ 1.250</span>
@@ -862,7 +877,7 @@
               <circle cx="19.5" cy="19.5" r="2.2"/>
             </svg>
           </div>
-          <div class="svc-name">Coroa de Flores</div>
+          <h3 class="svc-name">Coroa de Flores</div>
           <p class="svc-desc">Arranjos florais para homenagem com entrega no local do velório ou cerimônia. Pedido feito direto pelo WhatsApp.</p>
           <span class="svc-from">a partir de</span>
           <span class="svc-price">R$ 450</span>
@@ -911,17 +926,17 @@
       <div class="steps-grid">
         <div class="step rv">
           <div class="step-num" aria-hidden="true">01</div>
-          <div class="step-name">Chame pelo WhatsApp</div>
+          <h3 class="step-name">Chame pelo WhatsApp</h3>
           <p class="step-text">Não precisa ter tudo resolvido antes. A primeira mensagem já abre o atendimento e a orientação começa ali.</p>
         </div>
         <div class="step rv d1">
           <div class="step-num" aria-hidden="true">02</div>
-          <div class="step-name">Receba orientação imediata</div>
+          <h3 class="step-name">Receba orientação imediata</h3>
           <p class="step-text">Nossa equipe orienta os próximos passos, a documentação necessária e o que precisa ser feito — com clareza.</p>
         </div>
         <div class="step rv d2">
           <div class="step-num" aria-hidden="true">03</div>
-          <div class="step-name">Nós cuidamos do resto</div>
+          <h3 class="step-name">Nós cuidamos do resto</h3>
           <p class="step-text">A Central organiza tudo. Você se concentra na família e na despedida. Nós cuidamos da parte prática.</p>
         </div>
       </div>
@@ -964,7 +979,7 @@
             </svg>
           </div>
           <div>
-            <div class="trust-name">Disponível agora — e sempre</div>
+            <h3 class="trust-name">Disponível agora — e sempre</h3>
             <p class="trust-text">24 horas por dia, 7 dias por semana, incluindo feriados. Atendemos quando a família mais precisa.</p>
           </div>
         </div>
@@ -976,7 +991,7 @@
             </svg>
           </div>
           <div>
-            <div class="trust-name">WhatsApp como canal principal</div>
+            <h3 class="trust-name">WhatsApp como canal principal</h3>
             <p class="trust-text">Mais rápido, mais simples. Sem espera em fila, sem transferência de ramal, sem burocracia.</p>
           </div>
         </div>
@@ -989,7 +1004,7 @@
             </svg>
           </div>
           <div>
-            <div class="trust-name">Documentação sem complicação</div>
+            <h3 class="trust-name">Documentação sem complicação</h3>
             <p class="trust-text">Suporte em todos os trâmites. A família não precisa descobrir sozinha o que fazer.</p>
           </div>
         </div>
@@ -1003,7 +1018,7 @@
             </svg>
           </div>
           <div>
-            <div class="trust-name">Linguagem humana, sem pressão</div>
+            <h3 class="trust-name">Linguagem humana, sem pressão</h3>
             <p class="trust-text">Tom simples, calmo e respeitoso. Nenhuma decisão é pressionada. Nenhum passo é apressado.</p>
           </div>
         </div>
@@ -1016,7 +1031,7 @@
             </svg>
           </div>
           <div>
-            <div class="trust-name">Valores informados desde o início</div>
+            <h3 class="trust-name">Valores informados desde o início</h3>
             <p class="trust-text">Funeral a partir de R$1.450 e cremação a partir de R$1.250. Transparência antes de qualquer compromisso.</p>
           </div>
         </div>
@@ -1030,7 +1045,7 @@
             </svg>
           </div>
           <div>
-            <div class="trust-name">Porto Alegre, Grande POA e RS</div>
+            <h3 class="trust-name">Porto Alegre, Grande POA e RS</h3>
             <p class="trust-text">Atendimento regional completo e translados nacionais conforme a necessidade da família.</p>
           </div>
         </div>
