@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -110,7 +110,7 @@
       cursor: pointer;
       border: none;
       transition: all 0.3s ease;
-      white-space: nowrap;
+      white-space: normal;
     }
     .btn-gold   { background: var(--gold); color: var(--navy); }
     .btn-gold:hover { background: var(--gold-h); transform: translateY(-2px); }
@@ -328,7 +328,7 @@
       color: rgba(255,255,255,.32);
       max-width: 860px; margin: 0 auto;
       text-align: center;
-      white-space: nowrap;
+      white-space: normal;
       border-top: 1px solid rgba(197,165,90,.12);
       padding-top: 22px;
     }
@@ -684,21 +684,42 @@
       .burger { display: flex; }
       .hero-corners { display: none; }
       .steps-grid::before { display: none; }
-      .ban { padding: 64px 40px; }
+      .ban { padding: 64px 32px; }
       .wrap { padding: 0 24px; }
       .wrap-sm { padding: 0 24px; }
       .hd-in { justify-content: center; position: relative; }
       .burger { position: absolute; right: 20px; }
+      /* logo menor no mobile */
+      .hd-in img { height: 68px !important; }
+      /* hero content padding mobile */
+      .hero-content { padding: 110px 20px 80px; }
+      /* botões hero empilham e ficam full width */
+      .hero-ctas { flex-direction: column; align-items: stretch; gap: 12px; }
+      .hero-ctas .btn { justify-content: center; width: 100%; }
+      /* banner padding */
+      .ban-big { font-size: 3rem; }
     }
     @media (max-width: 560px) {
       .ft-grid { grid-template-columns: 1fr; }
-      .hd-in { padding: 0 20px; }
+      .hd-in { padding: 0 16px; }
       .urg-item:nth-child(2),
       .urg-item:nth-child(3) { display: none; }
       .urg-item + .urg-item { border-left: none; }
+      /* hero título menor em telas muito pequenas */
+      .h1-central { font-size: clamp(3rem, 14vw, 4.5rem); }
+      /* hero note quebra bem */
+      .hero-note { letter-spacing: .1em; font-size: .55rem; }
+      /* svc card padding menor */
+      .svc-card { padding: 36px 24px 32px; }
+      /* ban padding menor */
+      .ban { padding: 52px 20px; }
     }
   </style>
-<meta name="keywords" content="funeraria grande porto alegre, central atendimento funeral, funeraria central rs, atendimento funeral 24 horas, funeraria 24h grande poa, cremacao grande porto alegre, funeraria rs, assistencia funeral rs, funeraria central grande porto alegre"><meta name="robots" content="index, follow"><link rel="canonical" href="https://centralfunerariars.com.br/"><meta property="og:type" content="website"><meta property="og:url" content="https://centralfunerariars.com.br/"><meta property="og:title" content="Funerária Central | Atendimento Funeral Grande Porto Alegre e RS | 24h"><meta property="og:description" content="Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores — 24 horas pelo WhatsApp."><meta property="og:image" content="https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp"><meta property="og:locale" content="pt_BR"><script type="application/ld+json">{"@context":"https://schema.org","@type":"FuneralHome","name":"Funerária Central — Central Atendimento Funeral","description":"Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores e orientação documental 24 horas.","url":"https://centralfunerariars.com.br/","telephone":"+555120241595","openingHours":"Mo-Su 00:00-23:59","address":{"@type":"PostalAddress","addressLocality":"Porto Alegre","addressRegion":"RS","addressCountry":"BR"},"areaServed":["Grande Porto Alegre","Rio Grande do Sul","Porto Alegre","Grande POA","RS"]}</script>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Funerária Central | Atendimento Funeral Grande Porto Alegre e RS | 24h">
+<meta name="twitter:description" content="Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores — 24 horas pelo WhatsApp.">
+<meta name="twitter:image" content="https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp">
+<meta name="keywords" content="funeraria grande porto alegre, central atendimento funeral, funeraria central rs, atendimento funeral 24 horas, funeraria 24h grande poa, cremacao grande porto alegre, funeraria rs, assistencia funeral rs, funeraria central grande porto alegre"><meta name="robots" content="index, follow"><link rel="canonical" href="https://centralfunerariars.com.br/"><meta property="og:type" content="website"><meta property="og:url" content="https://centralfunerariars.com.br/"><meta property="og:title" content="Funerária Central | Atendimento Funeral Grande Porto Alegre e RS | 24h"><meta property="og:description" content="Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores — 24 horas pelo WhatsApp."><meta property="og:image" content="https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Funerária Central"><meta property="og:image:width" content="1672"><meta property="og:image:height" content="941"><script type="application/ld+json">{"@context":"https://schema.org","@type":"FuneralHome","name":"Funerária Central — Central Atendimento Funeral","description":"Central Atendimento Funeral na Grande Porto Alegre e todo o RS. Funeral, cremação, coroa de flores e orientação documental 24 horas.","url":"https://centralfunerariars.com.br/","telephone":"+555120241595","openingHours":"Mo-Su 00:00-23:59","address":{"@type":"PostalAddress","addressLocality":"Porto Alegre","addressRegion":"RS","addressCountry":"BR"},"priceRange":"R$1.250 - R$5.000","image":"https://centralfunerariars.com.br/funeraria-central-porto-alegre.webp","areaServed":["Grande Porto Alegre","Rio Grande do Sul","Porto Alegre","Grande POA","RS"]}</script>
 </head>
 <body>
 
