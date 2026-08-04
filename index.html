@@ -749,6 +749,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('config', 'AW-17950131471');
 </script>
 <!-- End Google Ads -->
+
+<!-- WW - conversao por clique (WhatsApp e telefone) -->
+<script>
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var alvo = null;
+    if (href.indexOf('wa.me') > -1 || href.indexOf('api.whatsapp.com') > -1 || href.indexOf('whatsapp://') > -1) {
+      alvo = 'AW-17950131471/zv-iCJyhsdscEI-Kpe9C';
+    } else if (href.indexOf('tel:') === 0) {
+      alvo = 'AW-17950131471/Gqc4CMrqxNscEI-Kpe9C';
+    }
+    if (alvo && typeof gtag === 'function') gtag('event', 'conversion', { send_to: alvo });
+  }, true);
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
