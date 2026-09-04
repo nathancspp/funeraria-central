@@ -202,6 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .hero-bg {
       position: absolute; inset: 0; overflow: hidden;
+      --folga: .07;   /* o quanto a foto passeia: o scale e o teto do JS saem daqui */
     }
     /* imagem em camada propria: recebe o parallax sem arrastar o overlay */
     .hero-bg::before {
@@ -211,11 +212,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-      transform: translate3d(0, var(--px, 0px), 0) scale(1.14);
+      transform: translate3d(0, var(--px, 0px), 0) scale(calc(1 + var(--folga) * 2));
       will-change: transform;
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-bg::before { transform: scale(1.14); }
+      .hero-bg::before { transform: scale(calc(1 + var(--folga) * 2)); }
     }
     .hero-bg::after {
       content: '';
@@ -749,10 +750,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       /* a barra de baixo assume o CTA: o flutuante sai de cena */
       .wa-float { display: none; }
       .wa-bar { display: block; }
+      /* HERO NO CELULAR: foto 16:9 em tela retrato e' zoom por matematica, nao por gosto.
+         Encolher o hero e' o unico jeito de mostrar mais foto (100svh -> 82svh), e a folga do
+         parallax cai junto. O enquadramento vai pra direita: pega o PLANTAO 24HS e o carro. */
+      #hero { min-height: 82svh; }
+      .hero-bg { --folga: .03; }
+      .hero-bg::before { background-position: 74% 52%; }
       #top-btn { bottom: calc(96px + env(safe-area-inset-bottom)); right: 18px; }
       body { padding-bottom: 86px; }
       /* hero content padding mobile */
-      .hero-content { padding: clamp(150px, 22vh, 220px) 20px 80px; }
+      .hero-content { padding: clamp(110px, 16vh, 165px) 20px 64px; }
       /* botões hero empilham e ficam full width */
       .hero-ctas { flex-direction: column; align-items: stretch; gap: 12px; }
       .hero-ctas .btn { justify-content: center; width: 100%; }
@@ -1406,15 +1413,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var bg = hero && hero.querySelector('.hero-bg');
     if (!bg) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var FATOR = 0.07;           // igual a folga do scale(1.14): nunca mostra borda
+    // a folga vem do CSS: muda entre desktop e celular, e o passeio nunca pode passar dela
+    function folga() {
+      var v = parseFloat(getComputedStyle(bg).getPropertyValue('--folga'));
+      return isNaN(v) ? 0.03 : v;
+    }
     var alt = hero.offsetHeight;
     var pedido = false;
     function pinta() {
       pedido = false;
       var y = window.pageYOffset || document.documentElement.scrollTop;
       if (y > alt) return;
-      var d = y * FATOR;
-      var teto = alt * FATOR;
+      var f = folga();
+      var d = y * f;
+      var teto = alt * f;
       bg.style.setProperty('--px', (d > teto ? teto : d) + 'px');
     }
     function aoRolar() { if (!pedido) { pedido = true; requestAnimationFrame(pinta); } }
