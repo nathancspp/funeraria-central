@@ -792,20 +792,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 <!-- End Google Ads -->
 
-<!-- WW - conversao por clique (WhatsApp e telefone) -->
+<!-- WW - rastreamento de clique: TODOS os botoes viram evento; conversao so nos que valem -->
 <script>
+(function () {
+  var ADS = 'AW-17950131471';
+  var CONV_WHATSAPP = ADS + '/zv-iCJyhsdscEI-Kpe9C';
+  var CONV_TELEFONE = ADS + '/Gqc4CMrqxNscEI-Kpe9C';
+
+  window.dataLayer = window.dataLayer || [];
+
+  function nome(el) {
+    var t = el.getAttribute('aria-label') || el.textContent || '';
+    return t.replace(/\s+/g, ' ').trim().slice(0, 60) || '(sem texto)';
+  }
+
+  function secao(el) {
+    if (el.closest('header')) return 'header';
+    if (el.closest('footer')) return 'rodape';
+    if (el.closest('.wa-bar')) return 'barra-fixa';
+    if (el.closest('.wa-float')) return 'flutuante';
+    var s = el.closest('section');
+    return (s && s.id) ? s.id : 'pagina';
+  }
+
   document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href]');
-    if (!a) return;
-    var href = a.getAttribute('href') || '';
-    var alvo = null;
+    var el = e.target.closest('a[href], button');
+    if (!el) return;
+
+    var href = el.getAttribute('href') || '';
+    var tipo = 'botao';
+    var conversao = null;
+
     if (href.indexOf('wa.me') > -1 || href.indexOf('api.whatsapp.com') > -1 || href.indexOf('whatsapp://') > -1) {
-      alvo = 'AW-17950131471/zv-iCJyhsdscEI-Kpe9C';
+      tipo = 'whatsapp';
+      conversao = CONV_WHATSAPP;
     } else if (href.indexOf('tel:') === 0) {
-      alvo = 'AW-17950131471/Gqc4CMrqxNscEI-Kpe9C';
+      tipo = 'telefone';
+      conversao = CONV_TELEFONE;
+    } else if (href.charAt(0) === '#') {
+      tipo = 'ancora';
+    } else if (href) {
+      tipo = 'link';
     }
-    if (alvo && typeof gtag === 'function') gtag('event', 'conversion', { send_to: alvo });
+
+    var dados = {
+      botao_tipo: tipo,
+      botao_texto: nome(el),
+      botao_secao: secao(el),
+      botao_destino: href || '(sem href)'
+    };
+
+    // 1) evento de clique — vale pra TODO botao, entra no GTM e no GA4
+    window.dataLayer.push({ event: 'clique_botao', clique: dados });
+    if (typeof gtag === 'function') gtag('event', 'clique_botao', dados);
+
+    // 2) conversao no Google Ads — so WhatsApp e telefone, uma unica vez por clique
+    if (conversao && typeof gtag === 'function') {
+      gtag('event', 'conversion', { send_to: conversao });
+    }
   }, true);
+})();
 </script>
 </head>
 <body>
