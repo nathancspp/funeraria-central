@@ -736,7 +736,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero-preco-parc strong { font-weight: 900; font-size: 1.16em; }
     .wa-bar-preco .parc {
       display: block; font-family: 'Cinzel', serif; font-weight: 600;
-      font-size: .58rem; letter-spacing: .06em; color: #C5A55A; margin-top: 1px;
+      font-size: .58rem; letter-spacing: .06em; color: rgba(255,255,255,.62); margin-top: 1px;
     }
     .hero-preco-alt {
       font-family: 'Cormorant Garamond', serif; font-style: italic;
@@ -748,11 +748,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .wa-bar-preco { flex: 1; min-width: 0; line-height: 1.15; text-align: left; }
     .wa-bar-preco .rot {
       display: block; font-family: 'Cinzel', serif; font-weight: 600;
-      font-size: .56rem; letter-spacing: .1em; text-transform: uppercase; color: #6b7280;
+      font-size: .56rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.58);
     }
     .wa-bar-preco .val {
       display: block; font-family: 'Cinzel', serif; font-weight: 900;
-      font-size: 1.2rem; color: #0D2344; letter-spacing: .02em;
+      font-size: 1.2rem; color: var(--gold); letter-spacing: .02em;
     }
 
     /* ─────────────────────────────────────────────
@@ -762,23 +762,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .wa-bar {
       display: none;
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 1200;
-      background: #fff;
-      box-shadow: 0 -2px 22px rgba(6,14,29,.28);
+      background: rgba(6,14,29,.97);
+      border-top: 1px solid rgba(197,165,90,.30);
+      box-shadow: 0 -6px 26px rgba(0,0,0,.45);
       padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      /* nasce escondida: so sobe quando a pessoa rola e passa do hero */
+      transform: translateY(118%); opacity: 0; pointer-events: none;
+      transition: transform .32s cubic-bezier(.2,.7,.3,1), opacity .22s ease;
     }
+    .wa-bar[data-visivel="sim"] { transform: none; opacity: 1; pointer-events: auto; }
+    @media (prefers-reduced-motion: reduce) { .wa-bar { transition: none; } }
     .wa-bar-btn {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
       flex: none; padding: 14px 18px; min-height: 48px;
-      background: #25D366; color: #fff; text-decoration: none;
-      font-family: 'Cinzel', serif; font-weight: 700;
+      background: var(--gold); color: var(--navy); text-decoration: none;
+      font-family: 'Cinzel', serif; font-weight: 900;
       font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
-      box-shadow: 0 3px 14px rgba(37,211,102,.34);
+      box-shadow: 0 3px 14px rgba(197,165,90,.28);
     }
     .wa-bar-btn:active { transform: translateY(1px); }
     .wa-bar-note {
       display: block; text-align: center; margin-top: 7px;
       font-family: 'Cinzel', serif; font-size: .54rem;
-      letter-spacing: .18em; text-transform: uppercase; color: #6b7280;
+      letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.42);
     }
 
     @media (max-width: 960px) {
@@ -1496,6 +1502,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function aoRolar() { if (!pedido) { pedido = true; requestAnimationFrame(pinta); } }
     window.addEventListener('scroll', aoRolar, { passive: true });
     window.addEventListener('resize', function () { alt = hero.offsetHeight; pinta(); }, { passive: true });
+    pinta();
+  })();
+  </script>
+
+  <!-- a barra do rodape so aparece depois que a pessoa rola: no topo ela brigava
+       com a faixa "Plantao 24h" e dava impressao de barra dupla -->
+  <script>
+  (function () {
+    var bar = document.querySelector('.wa-bar');
+    var hero = document.getElementById('hero');
+    if (!bar || !hero) return;
+    var gatilho = function () { return hero.offsetHeight * 0.72; };
+    var pedido = false;
+    function pinta() {
+      pedido = false;
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      bar.setAttribute('data-visivel', y > gatilho() ? 'sim' : 'nao');
+    }
+    window.addEventListener('scroll', function () {
+      if (!pedido) { pedido = true; requestAnimationFrame(pinta); }
+    }, { passive: true });
+    window.addEventListener('resize', pinta, { passive: true });
     pinta();
   })();
   </script>
