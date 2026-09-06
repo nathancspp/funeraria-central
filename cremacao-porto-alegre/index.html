@@ -381,27 +381,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       50%     { transform: rotate(45deg) translate(4px,4px); opacity: 1; }
     }
 
-    /* ─────────────────────────────────────────────
-       URGENCY BAR  (navy-d)
-    ───────────────────────────────────────────── */
-    #urg {
-      background: var(--navy-d);
-      border-top: 1px solid rgba(197,165,90,.15);
-      border-bottom: 1px solid rgba(197,165,90,.15);
-      padding: 16px 0;
-    }
-    .urg-row {
-      display: flex; align-items: center; justify-content: center;
-      flex-wrap: wrap;
-    }
-    .urg-item {
-      display: flex; align-items: center; gap: 9px;
-      font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .16em;
-      text-transform: uppercase; color: rgba(255,255,255,.72);
-      padding: 4px 28px;
-    }
-    .urg-item + .urg-item { border-left: 1px solid rgba(197,165,90,.18); }
-    .udot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+
+
+
 
     /* ─────────────────────────────────────────────
        SERVICES  (cream)
@@ -826,10 +809,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width: 560px) {
       .ft-grid { grid-template-columns: 1fr; }
       .hd-in { padding: 0 16px; }
-      .urg-item:nth-child(2),
-      .urg-item:nth-child(3) { display: none; }
-      .urg-item + .urg-item { border-left: none; }
-      /* hero título menor em telas muito pequenas */
+      /* hero titulo menor em telas muito pequenas */
       .h1-central { font-size: clamp(2.6rem, 13vw, 3.6rem); }
       /* hero note quebra bem */
       .hero-note { letter-spacing: .1em; font-size: .55rem; }
@@ -994,23 +974,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </p>
     </div>
 
-    <a href="/cremacao-porto-alegre/#urg" class="hero-scroll" aria-label="Ver mais">
+    <a href="/cremacao-porto-alegre/#svc" class="hero-scroll" aria-label="Ver mais">
       <span class="scroll-lbl">Saiba mais</span>
       <div class="scroll-arr"></div>
     </a>
   </section>
-
-  <!-- ══════════════════════════════════════════
-       URGENCY BAR
-  ══════════════════════════════════════════ -->
-  <div id="urg" aria-hidden="true">
-    <div class="urg-row">
-      <div class="urg-item"><span class="udot"></span>Plantão 24h · Todos os dias</div>
-      <div class="urg-item"><span class="udot"></span>Documentação Orientada</div>
-      <div class="urg-item"><span class="udot"></span>Cremação a partir de R$ 1.250</div>
-      <div class="urg-item"><span class="udot"></span>Porto Alegre e Grande POA</div>
-    </div>
-  </div>
 
   <!-- ══════════════════════════════════════════
        SERVIÇOS
@@ -1521,7 +1489,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var bar = document.querySelector('.wa-bar');
     var hero = document.getElementById('hero');
     if (!bar || !hero) return;
-    var gatilho = function () { return hero.offsetHeight * 0.72; };
+    var gatilho = function () { return hero.offsetHeight * 0.55; };
     var pedido = false;
     function pinta() {
       pedido = false;
