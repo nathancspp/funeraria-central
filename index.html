@@ -742,6 +742,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
        BARRA FIXA DO RODAPE (so mobile)
        Anda junto com a rolagem; substitui o botao flutuante.
     ───────────────────────────────────────────── */
+    /* Ela MORA logo abaixo do hero. Como o hero ocupa a tela inteira, ela nasce fora de
+       vista; ao rolar, sobe 1:1 com o dedo e, quando termina de entrar, gruda e fica ali
+       pra sempre. E' fixed (nao empurra a secao de baixo, que passa POR TRAS dela) com o
+       deslocamento calculado no scroll — 'sticky bottom' faria o contrario: apareceria
+       colada desde a abertura e sairia no fim. */
     .wa-bar {
       display: none;
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 1200;
@@ -749,12 +754,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       border-top: 1px solid rgba(197,165,90,.30);
       box-shadow: 0 -6px 26px rgba(0,0,0,.45);
       padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-      /* nasce escondida: so sobe quando a pessoa rola e passa do hero */
-      transform: translateY(118%); opacity: 0; pointer-events: none;
-      transition: transform .32s cubic-bezier(.2,.7,.3,1), opacity .22s ease;
+      will-change: transform;
     }
-    .wa-bar[data-visivel="sim"] { transform: none; opacity: 1; pointer-events: auto; }
-    @media (prefers-reduced-motion: reduce) { .wa-bar { transition: none; } }
     .wa-bar-btn {
       display: flex; align-items: center; justify-content: center; gap: 8px;
       flex: none; padding: 14px 18px; min-height: 48px;
@@ -791,9 +792,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .wa-float { display: none; }
       .wa-bar { display: block; }
       /* HERO NO CELULAR: foto 16:9 em tela retrato e' zoom por matematica, nao por gosto.
-         Encolher o hero e' o unico jeito de mostrar mais foto (100svh -> 82svh), e a folga do
-         parallax cai junto. O enquadramento vai pra direita: pega o PLANTAO 24HS e o carro. */
-      #hero { min-height: 82svh; }
+         O hero ocupa a tela INTEIRA: nada da secao seguinte pode aparecer na abertura,
+         senao vira faixa branca. O enquadramento vai pra direita: pega o PLANTAO 24HS e o carro. */
+      #hero { min-height: 100svh; }
       .hero-bg { --folga: .03; }
       .hero-bg::before { background-position: 74% 52%; }
       #top-btn { bottom: calc(96px + env(safe-area-inset-bottom)); right: 18px; }
@@ -977,6 +978,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="scroll-arr"></div>
     </a>
   </section>
+
+  <!-- Barra do rodape (mobile): mora AQUI, colada no fim do hero, e gruda ao rolar -->
+  <div class="wa-bar">    <div class="wa-bar-in">
+      <div class="wa-bar-preco">
+        <span class="rot">Funeral a partir de</span>
+        <span class="val">R$ 1.450</span>
+        <span class="parc">ou 12x no cartão</span>
+      </div>
+
+    <a href="https://wa.me/5551980581755?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento%20funeral."
+       target="_blank" rel="noopener" class="wa-bar-btn" aria-label="Falar pelo WhatsApp agora">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    </div>
+    <span class="wa-bar-note">Atendimento 24 horas &middot; orçamento na hora pelo WhatsApp</span>
+  </div>
+
 
   <!-- ══════════════════════════════════════════
        SERVIÇOS
@@ -1384,22 +1403,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </button>
 
 
-  <!-- Barra fixa do rodape (mobile) -->
-  <div class="wa-bar">    <div class="wa-bar-in">
-      <div class="wa-bar-preco">
-        <span class="rot">Funeral a partir de</span>
-        <span class="val">R$ 1.450</span>
-        <span class="parc">ou 12x no cartão</span>
-      </div>
-
-    <a href="https://wa.me/5551980581755?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento%20funeral."
-       target="_blank" rel="noopener" class="wa-bar-btn" aria-label="Falar pelo WhatsApp agora">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      WhatsApp
-    </a>
-    </div>
-    <span class="wa-bar-note">Atendimento 24 horas &middot; orçamento na hora pelo WhatsApp</span>
-  </div>
   <!-- WhatsApp float -->
   <div class="wa-float">
     <a href="https://wa.me/5551980581755?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento%20funeral."
@@ -1474,25 +1477,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
   </script>
 
-  <!-- a barra do rodape so aparece depois que a pessoa rola: no topo ela brigava
-       com a faixa "Plantao 24h" e dava impressao de barra dupla -->
+  <!-- A barra nao tem gatilho de liga/desliga: ela e' desenhada na posicao em que
+       ESTARIA se estivesse no fluxo, logo abaixo do hero. Enquanto o hero tapa a tela ela
+       fica fora de vista; ao rolar sobe junto com o dedo e, depois de entrar inteira,
+       nunca mais sai. -->
   <script>
   (function () {
     var bar = document.querySelector('.wa-bar');
     var hero = document.getElementById('hero');
     if (!bar || !hero) return;
-    var gatilho = function () { return hero.offsetHeight * 0.55; };
-    var pedido = false;
+    var h = 0, ligada = false, pedido = false;
+
+    function mede() {
+      ligada = getComputedStyle(bar).display !== 'none';
+      if (!ligada) { bar.style.transform = ''; document.body.style.paddingBottom = ''; return; }
+      bar.style.transform = 'none';
+      h = bar.offsetHeight;
+      document.body.style.paddingBottom = h + 'px';
+      pinta();
+    }
     function pinta() {
       pedido = false;
+      if (!ligada) return;
       var y = window.pageYOffset || document.documentElement.scrollTop;
-      bar.setAttribute('data-visivel', y > gatilho() ? 'sim' : 'nao');
+      // quanto dela ja entrou na tela, se ela morasse colada no fim do hero
+      var entrou = (y + window.innerHeight) - hero.offsetHeight;
+      var fora = Math.min(h, Math.max(0, h - entrou));
+      bar.style.transform = fora ? 'translate3d(0,' + fora + 'px,0)' : 'none';
+      bar.style.pointerEvents = fora > 2 ? 'none' : '';
     }
     window.addEventListener('scroll', function () {
       if (!pedido) { pedido = true; requestAnimationFrame(pinta); }
     }, { passive: true });
-    window.addEventListener('resize', pinta, { passive: true });
-    pinta();
+    window.addEventListener('resize', mede, { passive: true });
+    window.addEventListener('orientationchange', mede, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(mede);
+    mede();
   })();
   </script>
 </body>
