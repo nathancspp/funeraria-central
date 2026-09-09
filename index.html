@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     ───────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: 'Lato', sans-serif; background: #fff; color: #1A1A1A; overflow-x: hidden; line-height: 1.7; }
+    body { padding-bottom: 86px; font-family: 'Lato', sans-serif; background: #fff; color: #1A1A1A; overflow-x: hidden; line-height: 1.7; }
 
     /* ─────────────────────────────────────────────
        TOKENS
@@ -246,8 +246,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       text-align: center; padding: clamp(190px, 27vh, 300px) 40px 96px; max-width: 900px;
     }
     /* ── HIERARQUIA TIPOGRÁFICA DO HERO ─────────────────────
-       1. FUNERÁRIA    — Cinzel maiúsculo, médio, gold
-       2. CENTRAL      — Cinzel 900, muito grande, gold
+       1. FUNERÁRIA    — Cinzel 600, gold quase cheio (08/09: subiu de corpo e peso)
+       2. CENTRAL      — Cinzel 900, dominante mas ~2x FUNERÁRIA, nao 4x
        3. ASSISTÊNCIA  — Cinzel maiúsculo, médio, gold/60%
        4. Cidades      — Cinzel maiúsculo, pequeno, branco/35%
        5. Descritivo   — Cormorant Garamond itálico, branco/55%
@@ -289,11 +289,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* 1 — FUNERÁRIA: Cinzel maiúsculo médio */
     .h1-funeraria {
       font-family: 'Cinzel', serif;
-      font-weight: 400;
-      font-size: clamp(.95rem, 1.85vw, 1.38rem);
+      font-weight: 600;
+      font-size: clamp(1.3rem, 2.9vw, 2.1rem);
       text-transform: uppercase;
-      letter-spacing: .38em;
-      color: rgba(197,165,90,.75);
+      letter-spacing: .34em;
+      color: rgba(197,165,90,.92);
       display: block;
     }
 
@@ -301,7 +301,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .h1-central {
       font-family: 'Cinzel', serif;
       font-weight: 900;
-      font-size: clamp(3.1rem, 7vw, 5.6rem);
+      font-size: clamp(2.7rem, 5.5vw, 4.4rem);
       text-transform: uppercase;
       letter-spacing: .14em;
       line-height: .9;
@@ -666,7 +666,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
        FLOAT ELEMENTS
     ───────────────────────────────────────────── */
     #top-btn {
-      position: fixed; bottom: 28px; right: 28px;
+      position: fixed; bottom: calc(96px + env(safe-area-inset-bottom)); right: 28px;
       width: 42px; height: 42px; background: var(--gold);
       border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
@@ -675,14 +675,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     #top-btn.show { opacity: 1; pointer-events: auto; }
     #top-btn:hover { transform: translateY(-3px); }
-    .wa-float { position: fixed; bottom: 82px; right: 28px; z-index: 800; }
-    .wa-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 52px; height: 52px; background: #25D366; border-radius: 50%;
-      text-decoration: none; box-shadow: 0 4px 18px rgba(37,211,102,.32);
-      transition: transform .3s;
-    }
-    .wa-btn:hover { transform: scale(1.08); }
+    /* o botao redondo flutuante saiu em 08/09/2026: a barra do rodape assume o CTA
+       em TODA largura, e os dois brigavam pelo mesmo canto da tela. */
 
     /* ─────────────────────────────────────────────
        RESPONSIVE
@@ -727,7 +721,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: rgba(255,255,255,.58); margin-top: 4px;
     }
     /* preco a esquerda, botao a direita — o padrao que funciona na Kawasaki */
-    .wa-bar-in { display: flex; align-items: center; gap: 12px; }
+    .wa-bar-in { display: flex; align-items: center; gap: 12px;
+      max-width: 1100px; margin: 0 auto; }
     .wa-bar-preco { flex: 1; min-width: 0; line-height: 1.15; text-align: left; }
     .wa-bar-preco .rot {
       display: block; font-family: 'Cinzel', serif; font-weight: 600;
@@ -748,7 +743,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
        deslocamento calculado no scroll — 'sticky bottom' faria o contrario: apareceria
        colada desde a abertura e sairia no fim. */
     .wa-bar {
-      display: none;
+      display: block;
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 1200;
       background: rgba(6,14,29,.97);
       border-top: 1px solid rgba(197,165,90,.30);
@@ -788,17 +783,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .burger { position: absolute; right: 20px; }
       .hd-in img { height: 34px !important; max-width: 150px; object-fit: contain; }
       .hd-wa-mobile { flex-shrink: 0; padding: 10px 14px; font-size: .56rem; letter-spacing: .1em; }
-      /* a barra de baixo assume o CTA: o flutuante sai de cena */
-      .wa-float { display: none; }
-      .wa-bar { display: block; }
       /* HERO NO CELULAR: foto 16:9 em tela retrato e' zoom por matematica, nao por gosto.
          O hero ocupa a tela INTEIRA: nada da secao seguinte pode aparecer na abertura,
          senao vira faixa branca. O enquadramento vai pra direita: pega o PLANTAO 24HS e o carro. */
       #hero { min-height: 100svh; }
       .hero-bg { --folga: .03; }
       .hero-bg::before { background-position: 74% 52%; }
-      #top-btn { bottom: calc(96px + env(safe-area-inset-bottom)); right: 18px; }
-      body { padding-bottom: 86px; }
+      #top-btn { right: 18px; }
       /* hero content padding mobile */
       .hero-content { padding: clamp(110px, 16vh, 165px) 20px 64px; }
       /* botões hero empilham e ficam full width */
@@ -811,7 +802,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .ft-grid { grid-template-columns: 1fr; }
       .hd-in { padding: 0 16px; }
       /* hero titulo menor em telas muito pequenas */
-      .h1-central { font-size: clamp(2.6rem, 13vw, 3.6rem); }
+      .h1-central { font-size: clamp(2.2rem, 11vw, 3.05rem); }
       /* hero note quebra bem */
       .hero-note { letter-spacing: .1em; font-size: .55rem; }
       /* svc card padding menor */
@@ -855,7 +846,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     if (el.closest('header')) return 'header';
     if (el.closest('footer')) return 'rodape';
     if (el.closest('.wa-bar')) return 'barra-fixa';
-    if (el.closest('.wa-float')) return 'flutuante';
     var s = el.closest('section');
     return (s && s.id) ? s.id : 'pagina';
   }
@@ -1403,13 +1393,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </button>
 
 
-  <!-- WhatsApp float -->
-  <div class="wa-float">
-    <a href="https://wa.me/5551980581755?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento%20funeral."
-       target="_blank" rel="noopener" class="wa-btn" aria-label="Abrir WhatsApp">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
-  </div>
 
   <script>
     /* Header + back-to-top */
